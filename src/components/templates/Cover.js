@@ -7,13 +7,14 @@ export const Cover = (props) => {
 		width,
 		onClick,
 	} = props
+
 	return (
 		<Box
 			width={width}
 			margin='auto'
 		>
 			<ImageButton
-				src='/front_page.jpeg'
+				src='/frontpage.png'
 				alt='cover photo'
 				onClick={onClick}
 			/>
