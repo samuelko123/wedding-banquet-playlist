@@ -12,7 +12,6 @@ export const Content = (props) => {
 	} = props
 
 	const [currentSong, setCurrentSong] = React.useState(null)
-	console.log(currentSong?.src)
 
 	return (
 		<Stack
@@ -21,7 +20,11 @@ export const Content = (props) => {
 			gap={2}
 		>
 			<BackButton onClick={onClick} />
-			<Audio src={currentSong?.src} controls />
+			<Audio
+				src={currentSong?.src}
+				controls={true}
+				autoPlay={true}
+			/>
 			{
 				album.sections.map((section, i) =>
 					<PlayList

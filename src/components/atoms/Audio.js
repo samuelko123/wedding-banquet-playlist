@@ -1,14 +1,18 @@
 import React from 'react'
+import ReactAudioPlayer from 'react-audio-player'
 
 export const Audio = (props) => {
 	const {
 		controls,
+		autoPlay,
 		src,
 	} = props
 
 	return (
-		<audio controls={controls}>
-			<source src={src} />
-		</audio>
+		<ReactAudioPlayer
+			src={src}
+			controls={controls}
+			autoPlay={autoPlay}
+		/>
 	)
 }
