@@ -20,7 +20,7 @@ export default function Page() {
 			<Content
 				album={album}
 				width={600}
-				onClick={() => setShowContent(false)}
+				onClickBackButton={() => setShowContent(false)}
 			/>
 		)
 	}
