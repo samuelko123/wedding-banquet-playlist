@@ -10,12 +10,18 @@ const INITIAL_STATE = {
 	},
 }
 
+const reset = () => {
+	return INITIAL_STATE
+}
+
 const playNext = (state) => {
 	if (state.toBePlayed.songs.length > 0) {
 		const song = state.toBePlayed.songs.shift()
 		state.name = song.name
 		state.src = song.src
 		state.isPlaying = true
+	} else {
+		return reset()
 	}
 }
 
@@ -36,7 +42,7 @@ const audioSlice = createSlice({
 				name: name,
 				songs: [{
 					name: name,
-					src: src, 
+					src: src,
 				}],
 			}
 
@@ -56,9 +62,7 @@ const audioSlice = createSlice({
 			playNext(state)
 		},
 		playNext: playNext,
-		resetAudio: () => {
-			return INITIAL_STATE
-		},
+		resetAudio: reset(),
 	},
 })
 
@@ -70,4 +74,5 @@ export const audioSelectors = {
 	selectName: state => state.audio.name,
 	selectSrc: state => state.audio.src,
 	selectIsPlaying: state => state.audio.isPlaying,
+	selectToBePlayed: state => state.audio.toBePlayed,
 }

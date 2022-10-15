@@ -26,18 +26,29 @@ export const PlayList = (props) => {
 	const [isOpen, setIsOpen] = React.useState(true)
 	const name = useSelector(audioSelectors.selectName)
 	const isPlaying = useSelector(audioSelectors.selectIsPlaying)
+	const toBePlayed = useSelector(audioSelectors.selectToBePlayed)
 	const toggle = () => setIsOpen(!isOpen)
 
 	return (
 		<>
 			<List>
 				<ListItem>
-					<PlayButton
-						onClick={() => dispatch(audioActions.setToBePlayed({
-							name: data.name,
-							songs: data.songs,
-						}))}
-					/>
+					{
+						(isPlaying && data.name === toBePlayed.name)
+							?
+							<PauseButton
+								color={data.name === toBePlayed.name ? 'primary' : 'default'}
+								onClick={() => dispatch(audioActions.setIsPlaying(false))}
+							/>
+							:
+							<PlayButton
+								color={data.name === toBePlayed.name ? 'primary' : 'default'}
+								onClick={() => dispatch(audioActions.setToBePlayed({
+									name: data.name,
+									songs: data.songs,
+								}))}
+							/>
+					}
 					<ListItemText
 						primary={data.name}
 					/>
@@ -64,12 +75,16 @@ export const PlayList = (props) => {
 											:
 											<PlayButton
 												color={color}
-												onClick={() =>
-													dispatch(audioActions.setSong({
-														name: song.name,
-														src: song.src,
-													}))
-												}
+												onClick={() => {
+													if (isMe) {
+														dispatch(audioActions.setIsPlaying(true))
+													} else {
+														dispatch(audioActions.setSong({
+															name: song.name,
+															src: song.src,
+														}))
+													}
+												}}
 											/>
 									}
 									<ListItemText
