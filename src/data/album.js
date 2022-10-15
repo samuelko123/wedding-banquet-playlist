@@ -52,3 +52,7 @@ export const album = {
 		},
 	],
 }
+
+export const allSongs = album.sections.map((section) => {
+	return section.songs
+}).flat()
