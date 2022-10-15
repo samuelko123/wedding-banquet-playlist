@@ -11,12 +11,10 @@ export const Content = (props) => {
 	const {
 		album,
 		width,
-		onClick,
+		onClickBackButton,
 	} = props
 
 	const name = useSelector(audioSelectors.selectName)
-	const src = useSelector(audioSelectors.selectSrc)
-	const isPlaying = useSelector(audioSelectors.selectIsPlaying)
 
 	return (
 		<Stack
@@ -24,15 +22,9 @@ export const Content = (props) => {
 			margin='auto'
 			gap={2}
 		>
-			<BackButton onClick={onClick} />
+			<BackButton onClick={onClickBackButton} />
 			<span>{name || 'No song selected'}</span>
-			<Audio
-				src={src}
-				pause
-				controls={true}
-				autoPlay={true}
-				isPlaying={isPlaying}
-			/>
+			<Audio />
 			<Box
 				height={600}
 				overflowY='scroll'
@@ -42,8 +34,6 @@ export const Content = (props) => {
 						<PlayList
 							key={i}
 							data={section}
-							play={() => {}}
-							playing={name}
 						/>
 					)
 				}
