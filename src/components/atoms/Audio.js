@@ -22,7 +22,7 @@ export const Audio = () => {
 		} else {
 			player.current.audio.current.pause()
 		}
-	}, [player, isPlaying])
+	}, [isPlaying])
 
 	return (
 		<AudioPlayer
@@ -31,7 +31,7 @@ export const Audio = () => {
 			autoPlayAfterSrcChange={true}
 			onPlay={() => dispatch(audioActions.setIsPlaying(true))}
 			onPause={() => dispatch(audioActions.setIsPlaying(false))}
-			onEnded={() => dispatch(audioActions.setIsPlaying(false))}
+			onEnded={() => dispatch(audioActions.playNext())}
 		/>
 	)
 }

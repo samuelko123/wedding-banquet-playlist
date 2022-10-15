@@ -32,7 +32,12 @@ export const PlayList = (props) => {
 		<>
 			<List>
 				<ListItem>
-					<PlayButton />
+					<PlayButton
+						onClick={() => dispatch(audioActions.setToBePlayed({
+							name: data.name,
+							songs: data.songs,
+						}))}
+					/>
 					<ListItemText
 						primary={data.name}
 					/>

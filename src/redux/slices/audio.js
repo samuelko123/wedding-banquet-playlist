@@ -4,6 +4,19 @@ const INITIAL_STATE = {
 	name: null,
 	src: null,
 	isPlaying: false,
+	toBePlayed: {
+		name: null,
+		songs: [],
+	},
+}
+
+const playNext = (state) => {
+	if (state.toBePlayed.songs.length > 0) {
+		const song = state.toBePlayed.songs.shift()
+		state.name = song.name
+		state.src = song.src
+		state.isPlaying = true
+	}
 }
 
 const audioSlice = createSlice({
@@ -19,10 +32,30 @@ const audioSlice = createSlice({
 				src,
 			} = action.payload
 
-			state.name = name
-			state.src = src
-			state.isPlaying = true
+			state.toBePlayed = {
+				name: name,
+				songs: [{
+					name: name,
+					src: src, 
+				}],
+			}
+
+			playNext(state)
 		},
+		setToBePlayed: (state, action) => {
+			const {
+				name,
+				songs,
+			} = action.payload
+
+			state.toBePlayed = {
+				name: name,
+				songs: [].concat(songs),
+			}
+
+			playNext(state)
+		},
+		playNext: playNext,
 		resetAudio: () => {
 			return INITIAL_STATE
 		},
