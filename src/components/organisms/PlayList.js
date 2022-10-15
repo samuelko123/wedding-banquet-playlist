@@ -67,7 +67,6 @@ export const PlayList = (props) => {
 												}
 											/>
 									}
-
 									<ListItemText
 										primary={song.name}
 									/>

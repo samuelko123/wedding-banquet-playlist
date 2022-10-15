@@ -21,6 +21,7 @@ const audioSlice = createSlice({
 
 			state.name = name
 			state.src = src
+			state.isPlaying = true
 		},
 		resetAudio: () => {
 			return INITIAL_STATE
