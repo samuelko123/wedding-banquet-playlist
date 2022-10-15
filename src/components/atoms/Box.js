@@ -15,7 +15,7 @@ export const Box = (props) => {
 			width={width}
 			height={height}
 			margin={margin}
-			sx={{ 'overflow-y': overflowY }}
+			sx={{ overflowY: overflowY }}
 		>
 			{children}
 		</MuiBox>

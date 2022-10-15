@@ -1,15 +1,17 @@
 import React from 'react'
 import Head from 'next/head'
+import { Provider as ReduxProvider } from 'react-redux'
 
 import { Header } from '../components/atoms/Header'
 import { Stack } from '../components/atoms/Stack'
 import { CssBaseline } from '../components/atoms/CssBaseline'
+import { store } from '../redux/store'
 
 export const AppWrapper = (props) => {
 	const { children } = props
 
 	return (
-		<>
+		<ReduxProvider store={store}>
 			<Head>
 				<title>Wedding Banquet Playlist</title>
 				<link rel='icon' href='/favicon.ico' />
@@ -25,7 +27,7 @@ export const AppWrapper = (props) => {
 				</Header>
 				{children}
 			</Stack>
-		</>
+		</ReduxProvider>
 	)
 }
 

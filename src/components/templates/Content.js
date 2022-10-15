@@ -1,4 +1,6 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { audioSelectors } from '../../redux/slices/audio'
 import { Audio } from '../atoms/Audio'
 import { Box } from '../atoms/Box'
 import { Stack } from '../atoms/Stack'
@@ -12,7 +14,9 @@ export const Content = (props) => {
 		onClick,
 	} = props
 
-	const [currentSong, setCurrentSong] = React.useState(null)
+	const name = useSelector(audioSelectors.selectName)
+	const src = useSelector(audioSelectors.selectSrc)
+	const isPlaying = useSelector(audioSelectors.selectIsPlaying)
 
 	return (
 		<Stack
@@ -21,11 +25,13 @@ export const Content = (props) => {
 			gap={2}
 		>
 			<BackButton onClick={onClick} />
-			<span>{currentSong?.name || 'No song selected'}</span>
+			<span>{name || 'No song selected'}</span>
 			<Audio
-				src={currentSong?.src}
+				src={src}
+				pause
 				controls={true}
 				autoPlay={true}
+				isPlaying={isPlaying}
 			/>
 			<Box
 				height={600}
@@ -36,7 +42,8 @@ export const Content = (props) => {
 						<PlayList
 							key={i}
 							data={section}
-							setCurrentSong={setCurrentSong}
+							play={() => {}}
+							playing={name}
 						/>
 					)
 				}

@@ -1,8 +1,8 @@
 import React from 'react'
-import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import PauseIcon from '@mui/icons-material/Pause'
 import { IconButton } from '../atoms/IconButton'
 
-export const PlayButton = (props) => {
+export const PauseButton = (props) => {
 	const {
 		color,
 		onClick,
@@ -13,7 +13,7 @@ export const PlayButton = (props) => {
 			onClick={onClick}
 			color={color}
 		>
-			<PlayArrowIcon />
+			<PauseIcon />
 		</IconButton>
 	)
 }
