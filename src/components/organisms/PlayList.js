@@ -3,7 +3,6 @@ import { List } from '../atoms/List'
 import { Collapse } from '../atoms/Collapse'
 import { ListItem } from '../atoms/ListItem'
 import { IconButton } from '../atoms/IconButton'
-import { PlayButton } from '../molecules/PlayButton'
 import { ListItemText } from '../atoms/ListItemText'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
@@ -15,7 +14,7 @@ import {
 	audioActions,
 	audioSelectors,
 } from '../../redux/slices/audio'
-import { PauseButton } from '../molecules/PauseButton'
+import { PlayPauseButton } from './PlayPauseButton'
 
 export const PlayList = (props) => {
 	const {
@@ -25,7 +24,6 @@ export const PlayList = (props) => {
 	const dispatch = useDispatch()
 	const [isOpen, setIsOpen] = React.useState(true)
 	const name = useSelector(audioSelectors.selectName)
-	const isPlaying = useSelector(audioSelectors.selectIsPlaying)
 	const toBePlayed = useSelector(audioSelectors.selectToBePlayed)
 	const toggle = () => setIsOpen(!isOpen)
 
@@ -33,22 +31,15 @@ export const PlayList = (props) => {
 		<>
 			<List>
 				<ListItem>
-					{
-						(isPlaying && data.name === toBePlayed.name)
-							?
-							<PauseButton
-								color={data.name === toBePlayed.name ? 'primary' : 'default'}
-								onClick={() => dispatch(audioActions.setIsPlaying(false))}
-							/>
-							:
-							<PlayButton
-								color={data.name === toBePlayed.name ? 'primary' : 'default'}
-								onClick={() => dispatch(audioActions.setToBePlayed({
-									name: data.name,
-									songs: data.songs,
-								}))}
-							/>
-					}
+					<PlayPauseButton
+						active={data.name === toBePlayed.name}
+						onPlay={() => {
+							dispatch(audioActions.setToBePlayed({
+								name: data.name,
+								songs: data.songs,
+							}))
+						}}
+					/>
 					<ListItemText
 						primary={data.name}
 					/>
@@ -59,40 +50,24 @@ export const PlayList = (props) => {
 
 				<Collapse isOpen={isOpen}>
 					{
-						data.songs.map((song, i) => {
-							const isMe = (name === song.name)
-							const color = isMe ? 'primary' : 'default'
-
-							return (
-								<ListItem key={i} indent={4}>
-									{
-										(isPlaying && isMe)
-											?
-											<PauseButton
-												color={color}
-												onClick={() => dispatch(audioActions.setIsPlaying(false))}
-											/>
-											:
-											<PlayButton
-												color={color}
-												onClick={() => {
-													if (isMe) {
-														dispatch(audioActions.setIsPlaying(true))
-													} else {
-														dispatch(audioActions.setSong({
-															name: song.name,
-															src: song.src,
-														}))
-													}
-												}}
-											/>
-									}
-									<ListItemText
-										primary={song.name}
+						data.songs.map((song, i) =>
+							<ListItem key={i} indent={4}>
+								{
+									<PlayPauseButton
+										active={name === song.name}
+										onPlay={() => {
+											dispatch(audioActions.setSong({
+												name: song.name,
+												src: song.src,
+											}))
+										}}
 									/>
-								</ListItem>
-							)
-						})
+								}
+								<ListItemText
+									primary={song.name}
+								/>
+							</ListItem>
+						)
 					}
 				</Collapse>
 			</List>
