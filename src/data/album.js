@@ -48,6 +48,67 @@ export const album = {
 					name: 'Song B5',
 					src: '/B5.mp3',
 				},
+				{
+					name: 'Song B6',
+					src: '/B6.mp3',
+				},
+				{
+					name: 'Song B7',
+					src: '/B7.mp3',
+				},
+			],
+		},
+		{
+			songs: [
+				{
+					name: 'Song C1',
+					src: '/C1.mp3',
+				},
+				{
+					name: 'Song C2',
+					src: '/C2.mp3',
+				},
+				{
+					name: 'Song C3',
+					src: '/C3.mp3',
+				},
+				{
+					name: 'Song C4',
+					src: '/C4.mp3',
+				},
+				{
+					name: 'Song C5',
+					src: '/C5.mp3',
+				},
+			],
+		},
+		{
+			name: 'Section B',
+			songs: [
+				{
+					name: 'Song D1',
+					src: '/D1.mp3',
+				},
+				{
+					name: 'Song D2',
+					src: '/D2.mp3',
+				},
+				{
+					name: 'Song D3',
+					src: '/D3.mp3',
+				},
+				{
+					name: 'Song D4',
+					src: '/D4.mp3',
+				},
+				{
+					name: 'Song D5',
+					src: '/D5.mp3',
+				},
+				{
+					name: 'Song D6',
+					src: '/D6.mp3',
+				},
 			],
 		},
 	],
