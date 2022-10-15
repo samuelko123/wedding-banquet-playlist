@@ -62,7 +62,7 @@ const audioSlice = createSlice({
 			playNext(state)
 		},
 		playNext: playNext,
-		resetAudio: reset(),
+		reset: reset,
 	},
 })
 

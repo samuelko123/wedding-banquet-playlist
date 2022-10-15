@@ -1,8 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { audioSelectors } from '../../redux/slices/audio'
+import {
+	useDispatch,
+	useSelector,
+} from 'react-redux'
+import {
+	audioActions,
+	audioSelectors,
+} from '../../redux/slices/audio'
 import { Audio } from '../atoms/Audio'
 import { Box } from '../atoms/Box'
+import { Button } from '../atoms/Button'
 import { Stack } from '../atoms/Stack'
 import { BackButton } from '../molecules/BackButton'
 import { PlayList } from '../organisms/PlayList'
@@ -14,6 +21,7 @@ export const Content = (props) => {
 		onClickBackButton,
 	} = props
 
+	const dispatch = useDispatch()
 	const name = useSelector(audioSelectors.selectName)
 
 	return (
@@ -23,7 +31,16 @@ export const Content = (props) => {
 			gap={2}
 		>
 			<BackButton onClick={onClickBackButton} />
-			<span>{name || 'No song selected'}</span>
+			<Stack
+				width='100%'
+				flexDirection='row'
+				justifyContent='flex-start'
+				alignItems='center'
+				gap={2}
+			>
+				<span>{name || 'No song selected'}</span>
+				<Button onClick={() => dispatch(audioActions.reset())}>Reset</Button>
+			</Stack>
 			<Audio />
 			<Box
 				height={600}

@@ -18,11 +18,15 @@ export const Audio = () => {
 
 	React.useEffect(() => {
 		if (isPlaying) {
-			player.current.audio.current.play()
+			player.current?.audio.current.play()
 		} else {
-			player.current.audio.current.pause()
+			player.current?.audio.current.pause()
 		}
 	}, [isPlaying])
+
+	if (!src) {
+		return null
+	}
 
 	return (
 		<AudioPlayer

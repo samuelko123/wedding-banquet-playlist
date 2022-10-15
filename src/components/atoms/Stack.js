@@ -8,16 +8,22 @@ export const Stack = (props) => {
 		margin,
 		gap,
 		padding,
+		flexDirection,
+		justifyContent,
+		alignItems,
 		children,
 	} = props
 
 	return (
 		<MuiStack
 			component={component}
+			flexDirection={flexDirection}
 			width={width}
 			margin={margin}
 			padding={padding}
 			gap={gap}
+			justifyContent={justifyContent}
+			alignItems={alignItems}
 		>
 			{children}
 		</MuiStack>
