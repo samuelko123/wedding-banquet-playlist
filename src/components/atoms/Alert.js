@@ -11,7 +11,7 @@ export const Alert = (props) => {
 		<MuiAlert
 			severity={severity}
 		>
-			{children}
+			{typeof children === 'object' ? JSON.stringify(children) : children}
 		</MuiAlert>
 	)
 }

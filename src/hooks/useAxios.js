@@ -27,7 +27,7 @@ export const useAxios = (props) => {
 					setResponse(res.data)
 				})
 				.catch((err) => {
-					setError(err?.response?.data?.errors || err.message)
+					setError(err.response?.data?.errors || err.message)
 				})
 				.finally(() => {
 					setloading(false)
