@@ -48,8 +48,8 @@ export const Content = (props) => {
 			</Stack>
 			<Audio />
 			<Box
-				height={600}
-				overflowY='scroll'
+				maxHeight={600}
+				overflowY='auto'
 			>
 				<List>
 					<ListItem>

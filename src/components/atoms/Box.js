@@ -5,6 +5,7 @@ export const Box = (props) => {
 	const {
 		width,
 		height,
+		maxHeight,
 		margin,
 		overflowY,
 		children,
@@ -14,6 +15,7 @@ export const Box = (props) => {
 		<MuiBox
 			width={width}
 			height={height}
+			maxHeight={maxHeight}
 			margin={margin}
 			sx={{ overflowY: overflowY }}
 		>
