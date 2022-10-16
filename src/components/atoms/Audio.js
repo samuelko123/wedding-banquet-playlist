@@ -13,7 +13,7 @@ import 'react-h5-audio-player/lib/styles.css'
 export const Audio = () => {
 	const dispatch = useDispatch()
 	const isPlaying = useSelector(audioSelectors.selectIsPlaying)
-	const src = useSelector(audioSelectors.selectSrc)
+	const src = useSelector(audioSelectors.selectUrl)
 	const player = React.useRef()
 
 	React.useEffect(() => {

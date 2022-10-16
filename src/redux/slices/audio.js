@@ -18,7 +18,7 @@ const playNext = (state) => {
 	if (state.toBePlayed.songs.length > 0) {
 		const song = state.toBePlayed.songs.shift()
 		state.name = song.name
-		state.src = song.src
+		state.url = song.audio.url
 		state.isPlaying = true
 	} else {
 		return reset()
@@ -35,14 +35,16 @@ const audioSlice = createSlice({
 		setSong: (state, action) => {
 			const {
 				name,
-				src,
+				url,
 			} = action.payload
 
 			state.toBePlayed = {
 				name: name,
 				songs: [{
 					name: name,
-					src: src,
+					audio: {
+						url: url,
+					},
 				}],
 			}
 
@@ -72,7 +74,7 @@ export const audioReducer = audioSlice.reducer
 
 export const audioSelectors = {
 	selectName: state => state.audio.name,
-	selectSrc: state => state.audio.src,
+	selectUrl: state => state.audio.url,
 	selectIsPlaying: state => state.audio.isPlaying,
 	selectToBePlayed: state => state.audio.toBePlayed,
 }
