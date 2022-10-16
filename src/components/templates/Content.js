@@ -3,7 +3,6 @@ import {
 	useDispatch,
 	useSelector,
 } from 'react-redux'
-import { allSongs } from '../../data/album'
 import {
 	audioActions,
 	audioSelectors,
@@ -67,10 +66,10 @@ export const Content = (props) => {
 					</ListItem>
 				</List>
 				{
-					album.sections.map((section, i) =>
+					album.chapters.items.map((chapter, i) =>
 						<PlayList
 							key={i}
-							data={section}
+							data={chapter}
 						/>
 					)
 				}

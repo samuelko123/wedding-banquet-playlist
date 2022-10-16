@@ -1,10 +1,14 @@
 import React from 'react'
 import { Content } from '../components/templates/Content'
 import { Cover } from '../components/templates/Cover'
-import { album } from '../data/album'
+import { useAlbumData } from '../hooks/useAlbumData'
 
 export default function Page() {
 	const [showContent, setShowContent] = React.useState(false)
+
+	const {
+		res,
+	} = useAlbumData()
 
 	if (!showContent) {
 		return (
@@ -15,10 +19,10 @@ export default function Page() {
 		)
 	}
 
-	if (showContent) {
+	if (showContent && !!res) {
 		return (
 			<Content
-				album={album}
+				album={res.data}
 				width={600}
 				onClickBackButton={() => setShowContent(false)}
 			/>

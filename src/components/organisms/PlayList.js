@@ -50,7 +50,7 @@ export const PlayList = (props) => {
 
 				<Collapse isOpen={isOpen}>
 					{
-						data.songs.map((song, i) =>
+						data.songs.items.map((song, i) =>
 							<ListItem key={i} indent={4}>
 								{
 									<PlayPauseButton
@@ -58,7 +58,7 @@ export const PlayList = (props) => {
 										onPlay={() => {
 											dispatch(audioActions.setSong({
 												name: song.name,
-												src: song.src,
+												src: song.audio.url,
 											}))
 										}}
 									/>
