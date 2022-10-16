@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAxios } from './useAxios'
+import compress from 'graphql-query-compress'
 
 export const useAlbumData = () => {
 	const url = 'https://graphql.contentful.com/content/v1/spaces/f07kqlf6gthj/environments/master'
@@ -15,29 +16,29 @@ export const useAlbumData = () => {
 
 	const data = React.useMemo(() => {
 		return {
-			query: `
-query {
-	chapters: chapterCollection (limit: 5) {
-		items{
-				...on Chapter {
-				code
-				name
-				songs: songsCollection (limit: 50) {
-					items{
-						...on Song {
-							name
-							code
-							audio {
-								url
+			query: compress(`
+				query {
+					chapters: chapterCollection (limit: 5) {
+						items{
+								...on Chapter {
+								code
+								name
+								songs: songsCollection (limit: 50) {
+									items{
+										...on Song {
+											name
+											code
+											audio {
+												url
+											}
+										}
+									}
+								}
 							}
 						}
 					}
 				}
-			}
-		}
-	}
-}
-			`,
+			`),
 		}
 	}, [])
 
