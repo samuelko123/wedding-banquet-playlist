@@ -27,13 +27,6 @@ export const PlayList = (props) => {
 	const toBePlayed = useSelector(audioSelectors.selectToBePlayed)
 	const toggle = () => setIsOpen(!isOpen)
 
-	const songs = data.songs.items
-		.sort((a, b) => {
-			if (b.code > a.code) { return -1 }
-			if (a.code > b.code) { return 1 }
-			return 0
-		})
-
 	return (
 		<>
 			<List>
@@ -43,7 +36,7 @@ export const PlayList = (props) => {
 						onPlay={() => {
 							dispatch(audioActions.setToBePlayed({
 								name: data.name,
-								songs: songs,
+								songs: data.songs.items,
 							}))
 						}}
 					/>
@@ -57,7 +50,7 @@ export const PlayList = (props) => {
 
 				<Collapse isOpen={isOpen}>
 					{
-						songs.map((song, i) =>
+						data.songs.items.map((song, i) =>
 							<ListItem key={i} indent={4}>
 								{
 									<PlayPauseButton

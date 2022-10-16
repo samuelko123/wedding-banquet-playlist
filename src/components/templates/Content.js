@@ -29,14 +29,7 @@ export const Content = (props) => {
 	const name = useSelector(audioSelectors.selectName)
 	const toBePlayed = useSelector(audioSelectors.selectToBePlayed)
 
-	const chapters = album.chapters.items
-		.sort((a, b) => {
-			if (b.code > a.code) { return -1 }
-			if (a.code > b.code) { return 1 }
-			return 0
-		})
-
-	const allSongs = chapters
+	const allSongs = album.chapters.items
 		.map(chapter => chapter.songs.items.flat())
 		.flat()
 
@@ -77,7 +70,7 @@ export const Content = (props) => {
 					</ListItem>
 				</List>
 				{
-					chapters.map((chapter, i) =>
+					album.chapters.items.map((chapter, i) =>
 						<PlayList
 							key={i}
 							data={chapter}

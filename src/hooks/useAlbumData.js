@@ -14,7 +14,7 @@ export const useAlbumData = () => {
 		}
 	}, [token])
 
-	const data = React.useMemo(() => {
+	const body = React.useMemo(() => {
 		return {
 			query: compress(`
 				query {
@@ -42,10 +42,34 @@ export const useAlbumData = () => {
 		}
 	}, [])
 
-	return useAxios({
+	const {
+		res,
+		err,
+		loading,
+	} = useAxios({
 		url,
 		method,
 		headers,
-		data,
+		data: body,
 	})
+
+	if (!!res) {
+		res.data.chapters.items.sort(sortItems)
+		res.data.chapters.items.map(chapter => {
+			chapter.songs.items.sort(sortItems)
+			return chapter
+		})
+	}
+
+	return {
+		res,
+		err,
+		loading, 
+	}
+}
+
+const sortItems = (a, b) => {
+	if (b.code > a.code) { return -1 }
+	if (a.code > b.code) { return 1 }
+	return 0
 }
