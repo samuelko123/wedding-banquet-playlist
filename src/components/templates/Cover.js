@@ -14,8 +14,8 @@ export const Cover = (props) => {
 			margin='auto'
 		>
 			<ImageButton
-				src='/frontpage.png'
-				alt='cover photo'
+				src='/cover.jpg'
+				alt='cover'
 				onClick={onClick}
 			/>
 		</Box>
