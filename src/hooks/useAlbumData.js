@@ -64,7 +64,7 @@ export const useAlbumData = () => {
 	return {
 		res,
 		err,
-		loading, 
+		loading,
 	}
 }
 
