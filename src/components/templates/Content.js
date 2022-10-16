@@ -66,12 +66,18 @@ export const Content = (props) => {
 					</ListItem>
 				</List>
 				{
-					album.chapters.items.map((chapter, i) =>
-						<PlayList
-							key={i}
-							data={chapter}
-						/>
-					)
+					album.chapters.items
+						.sort((a, b) => {
+							if (b.code > a.code) { return -1 }
+							if (a.code > b.code) { return 1 }
+							return 0
+						})
+						.map((chapter, i) =>
+							<PlayList
+								key={i}
+								data={chapter}
+							/>
+						)
 				}
 			</Box>
 		</Stack>

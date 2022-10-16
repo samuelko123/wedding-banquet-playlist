@@ -50,24 +50,30 @@ export const PlayList = (props) => {
 
 				<Collapse isOpen={isOpen}>
 					{
-						data.songs.items.map((song, i) =>
-							<ListItem key={i} indent={4}>
-								{
-									<PlayPauseButton
-										active={name === song.name}
-										onPlay={() => {
-											dispatch(audioActions.setSong({
-												name: song.name,
-												src: song.audio.url,
-											}))
-										}}
+						data.songs.items
+							.sort((a, b) => {
+								if (b.code > a.code) { return -1 }
+								if (a.code > b.code) { return 1 }
+								return 0
+							})
+							.map((song, i) =>
+								<ListItem key={i} indent={4}>
+									{
+										<PlayPauseButton
+											active={name === song.name}
+											onPlay={() => {
+												dispatch(audioActions.setSong({
+													name: song.name,
+													src: song.audio.url,
+												}))
+											}}
+										/>
+									}
+									<ListItemText
+										primary={song.name}
 									/>
-								}
-								<ListItemText
-									primary={song.name}
-								/>
-							</ListItem>
-						)
+								</ListItem>
+							)
 					}
 				</Collapse>
 			</List>

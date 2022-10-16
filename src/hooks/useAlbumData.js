@@ -16,26 +16,27 @@ export const useAlbumData = () => {
 	const data = React.useMemo(() => {
 		return {
 			query: `
-				query {
-					chapters: chapterCollection (limit: 5) {
-						items{
-								...on Chapter {
-								name
-								songs: songsCollection (limit: 50) {
-									items{
-										...on Song {
-											name
-											code
-											audio {
-												url
-											}
-										}
-									}
-								}
+query {
+	chapters: chapterCollection (limit: 5) {
+		items{
+				...on Chapter {
+				code
+				name
+				songs: songsCollection (limit: 50) {
+					items{
+						...on Song {
+							name
+							code
+							audio {
+								url
 							}
 						}
 					}
 				}
+			}
+		}
+	}
+}
 			`,
 		}
 	}, [])
