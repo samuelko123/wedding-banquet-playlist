@@ -41,7 +41,7 @@ export const PlayList = (props) => {
 						}}
 					/>
 					<ListItemText
-						primary={data.name}
+						primary={`${data.code}. ${data.name}`}
 					/>
 					<IconButton onClick={toggle}>
 						{isOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
@@ -64,7 +64,7 @@ export const PlayList = (props) => {
 									/>
 								}
 								<ListItemText
-									primary={song.name}
+									primary={`${song.code}. ${song.name}`}
 								/>
 							</ListItem>
 						)
