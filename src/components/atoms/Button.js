@@ -13,6 +13,7 @@ export const Button = (props) => {
 			onClick={onClick}
 			startIcon={startIcon}
 			disableRipple={true}
+			variant='outlined'
 			sx={{ alignSelf: 'flex-start' }}
 		>
 			{children}
