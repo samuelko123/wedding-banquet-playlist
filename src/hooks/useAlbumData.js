@@ -6,7 +6,7 @@ export const useAlbumData = () => {
 	const url = 'https://graphql.contentful.com/content/v1/spaces/f07kqlf6gthj/environments/master'
 	const method = 'POST'
 
-	const token = 'HoV6WpkZG-NOPPbb_C-_LIEjVqZ3tW9-dCr_DMjt9kk'
+	const token = process.env.NEXT_PUBLIC_CONTENTFUL_TOKEN
 	const headers = React.useMemo(() => {
 		return {
 			'Content-Type': 'application/json',
